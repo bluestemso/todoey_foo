@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todoey_foo/models/task.dart';
 
 class TaskTile extends StatelessWidget {
   const TaskTile({

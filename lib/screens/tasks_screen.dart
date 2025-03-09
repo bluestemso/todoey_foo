@@ -1,10 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:todoey_foo/widgets/task_tile.dart';
 import 'package:todoey_foo/widgets/tasks_list.dart';
 import 'package:todoey_foo/screens/add_task_screen.dart';
+import 'package:todoey_foo/models/task.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});
+
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: 'Buy milk'),
+    Task(name: 'Go for a run'),
+    Task(name: 'Eat your veggies'),
+  ];
+
+  void addTask(String newTaskTitle) {
+    setState(() {
+      tasks.add(Task(name: newTaskTitle));
+    });
+  }
+
+  void toggleTask(int index) {
+    setState(() {
+      tasks[index].toggleDone();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +41,13 @@ class TasksScreen extends StatelessWidget {
               isScrollControlled: true,
               context: context,
               builder:
-                  (context) => Padding(
-                    padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                  (context) => SingleChildScrollView(
+                    child: Container(
+                      padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom,
+                      ),
+                      child: AddTaskScreen(addTaskCallback: addTask),
                     ),
-                    child: const AddTaskScreen(),
                   ),
             );
           },
@@ -63,7 +88,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '12 Tasks',
+                  '${tasks.length} Tasks',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                     fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
@@ -82,7 +107,7 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(),
+              child: TasksList(tasks: tasks, onToggleTask: toggleTask),
             ),
           ),
         ],
