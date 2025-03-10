@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:todoey_foo/widgets/tasks_list.dart';
 import 'package:todoey_foo/screens/add_task_screen.dart';
 import 'package:todoey_foo/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey_foo/models/task_data.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});
@@ -11,23 +13,23 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy milk'),
-    Task(name: 'Go for a run'),
-    Task(name: 'Eat your veggies'),
-  ];
+  // List<Task> tasks = [
+  //   Task(name: 'Buy milk'),
+  //   Task(name: 'Go for a run'),
+  //   Task(name: 'Eat your veggies'),
+  // ];
 
-  void addTask(String newTaskTitle) {
-    setState(() {
-      tasks.add(Task(name: newTaskTitle));
-    });
-  }
+  // void addTask(String newTaskTitle) {
+  //   setState(() {
+  //     tasks.add(Task(name: newTaskTitle));
+  //   });
+  // }
 
-  void toggleTask(int index) {
-    setState(() {
-      tasks[index].toggleDone();
-    });
-  }
+  // void toggleTask(int index) {
+  //   setState(() {
+  //     tasks[index].toggleDone();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class _TasksScreenState extends State<TasksScreen> {
                       padding: EdgeInsets.only(
                         bottom: MediaQuery.of(context).viewInsets.bottom,
                       ),
-                      child: AddTaskScreen(addTaskCallback: addTask),
+                      child: const AddTaskScreen(),
                     ),
                   ),
             );
@@ -88,7 +90,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  '${tasks.length} Tasks',
+                  '${Provider.of<TaskData>(context).taskCount} Tasks',
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                     fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
@@ -107,7 +109,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(tasks: tasks, onToggleTask: toggleTask),
+              child: const TasksList(),
             ),
           ),
         ],
