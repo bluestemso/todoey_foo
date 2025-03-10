@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todoey_foo/widgets/tasks_list.dart';
 import 'package:todoey_foo/screens/add_task_screen.dart';
-import 'package:todoey_foo/models/task.dart';
 import 'package:provider/provider.dart';
 import 'package:todoey_foo/models/task_data.dart';
 
@@ -13,23 +12,6 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  // List<Task> tasks = [
-  //   Task(name: 'Buy milk'),
-  //   Task(name: 'Go for a run'),
-  //   Task(name: 'Eat your veggies'),
-  // ];
-
-  // void addTask(String newTaskTitle) {
-  //   setState(() {
-  //     tasks.add(Task(name: newTaskTitle));
-  //   });
-  // }
-
-  // void toggleTask(int index) {
-  //   setState(() {
-  //     tasks[index].toggleDone();
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {

@@ -35,10 +35,6 @@ class AddTaskScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20.0),
               TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.lightBlueAccent,
-                  foregroundColor: Colors.white,
-                ),
                 onPressed: () {
                   Provider.of<TaskData>(
                     context,
